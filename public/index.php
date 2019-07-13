@@ -21,6 +21,7 @@ $configuration = [
 ];
 
 \session_start();
+$sessionID = session_id();
 
 $app = new \Slim\App($configuration);
 
@@ -29,6 +30,8 @@ $container['renderer'] = new \Slim\Views\PhpRenderer(__DIR__ . '/../templates');
 
 $app->get('/', \Bringo\HomeController::class . ':home');
 
-$app->get('/run', \Bringo\RunController::class . ':run');
+$app->get('/doors', \Bringo\RunController::class . ':showDoors');
+
+$app->get('/handle', \Bringo\RunController::class . ':handle');
 
 $app->run();

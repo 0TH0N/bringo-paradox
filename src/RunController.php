@@ -11,8 +11,18 @@ class RunController
         $this->container = $container;
     }
 
-    public function run($request, $response)
+    public function showDoors($request, $response)
     {
-        return $this->container->renderer->render($response, 'monti-hall.phtml');
+        return $this->container->renderer->render($response, 'step-1.phtml');
+    }
+
+    public function handle($request, $response)
+    {
+        $chosenDoor = $request->getQueryParam('door');
+        $generator = new DoorsGenerator($chosenDoor);
+        $stateOfDoors = $generator->generate();
+        $repository = new RoundsRepository();
+        $repository->insertRound($stateOfDoors);
+        return $this->container->renderer->render($response, 'step-1.phtml');
     }
 }

@@ -14,7 +14,8 @@
     "autoload": {
         "psr-4": {
             "Bringo\\": "src/",
-            "Bringo\\Tests\\": "tests/"
+            "Bringo\\Tests\\": "tests/",
+            "Bringo\\Config\\": "config/"
         },
         "files": []
     },
