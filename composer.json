@@ -1,0 +1,31 @@
+{
+    "name": "0th0n/bringo-monti-hall-paradox",
+    "description": "Explanation for Monti Hall paradox.",
+    "authors": [
+        {
+            "name": "0TH0N",
+            "email": "jbator777@gmail.com"
+        }
+    ],
+    "scripts": {
+        "tests": "phpunit tests",
+        "phpcs": "phpcs --standard=PSR12 --ignore=vendor ./"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bringo\\": "src/",
+            "Bringo\\Tests\\": "tests/"
+        },
+        "files": []
+    },
+    "require": {
+        "slim/slim": "^3.12",
+        "tightenco/collect": "^5.8",
+        "danielstjules/stringy": "^3.1",
+        "nesbot/carbon": "^2.20",
+        "slim/php-view": "^2.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.2"
+    }
+}

@@ -1,0 +1,47 @@
+.header {
+    margin-top: 30px;
+}
+
+.door {
+    position: relative;
+    background: #B8B094;
+    width: 200px;
+    height: 500px;
+    margin: 20px;
+}
+
+.door__knob {
+    position: absolute;
+    background: #000;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    top: 244px;
+    left: 170px;
+}
+
+.door__hinge {
+    position: absolute;
+    background: #000;
+    width: 15px;
+    height: 50px;
+    border-radius: 1px;
+}
+
+.door__hinge-1 {
+    top: 30px;
+    left: -7px;
+}
+
+.door__hinge-2 {
+    top: 420px;
+    left: -7px;
+}
+
+.static-info {
+    background: #EDE8D9;
+    margin: 20px;
+    border-radius: 5px;
+    width: 300px;
+    height: 200px;
+}
