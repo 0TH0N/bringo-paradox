@@ -19,14 +19,20 @@ class DBHelper
 
     public function execute($sql, $data = [])
     {
-        $stmt = $pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         return $stmt->execute($data);
     }
 
-
     public function fetch($sql, $data = [])
     {
-        $stmt = $pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
+        $boolResult = $stmt->execute($data);
+        return $boolResult ? $stmt->fetch() : false;
+    }
+
+    public function fetchAll($sql, $data = [])
+    {
+        $stmt = $this->pdo->prepare($sql);
         $boolResult = $stmt->execute($data);
         return $boolResult ? $stmt->fetchAll() : false;
     }

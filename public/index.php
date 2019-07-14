@@ -34,4 +34,6 @@ $app->get('/doors', \Bringo\RunController::class . ':showDoors');
 
 $app->get('/handle', \Bringo\RunController::class . ':handle');
 
+$app->delete('/destroy', \Bringo\RunController::class . ':destroy');
+
 $app->run();
