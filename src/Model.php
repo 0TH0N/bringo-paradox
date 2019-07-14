@@ -16,13 +16,14 @@ class Model
     {
         $numberOfAllGoodRounds = $this->repository->calculateGoodRounds();
         $numberOfAllRounds = $this->repository->calculateAllRounds();
-        $allGoodPersent = ($numberOfAllGoodRounds / $numberOfAllRounds) * 100;
+        $allGoodPersent = $numberOfAllRounds === 0 ? 0 : ($numberOfAllGoodRounds / $numberOfAllRounds) * 100;
         $roundedAllPersent = round($allGoodPersent, 2);
 
         $sessionId = session_id();
         $numberOfSessionGoodRounds = $this->repository->calculateSessionGoodRounds($sessionId);
         $numberOfSessionRounds = $this->repository->calculateSessionAllRounds($sessionId);
-        $sessionGoodPersent = ($numberOfSessionGoodRounds / $numberOfSessionRounds) * 100;
+        $sessionGoodPersent = $numberOfSessionRounds === 0 ?
+            0 : ($numberOfSessionGoodRounds / $numberOfSessionRounds) * 100;
         $roundedSessionPersent = round($sessionGoodPersent, 2);
 
         $statistic = [
