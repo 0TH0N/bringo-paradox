@@ -5,6 +5,7 @@ namespace Bringo;
 class Model
 {
     protected $repository;
+    protected $passwordHash = '$2y$10$iKusMrHRpUAa8WyduczLpuT.9H.FuUpkuEFdIOdDl6YPXe16/rrYa';
 
     public function __construct()
     {
@@ -41,5 +42,14 @@ class Model
         $stateOfDoors = $generator->generate();
         $this->repository->insertRound($stateOfDoors);
         return $stateOfDoors;
+    }
+
+    public function clearTable($password)
+    {
+        $rightPassword = password_verify($password, $this->passwordHash);
+        if ($rightPassword) {
+            $this->repository->clearTable();
+        }
+        return $rightPassword;
     }
 }

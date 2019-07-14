@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Monti Hall Paradox</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">О данной программе.</h1>
+        <br>
+        <div class="text-justify">
+            <ul>
+                <strong>Использованные технологии:</strong>
+                <li>Фреймворк Slim</li>
+                <li>Работа с БД MySQL</li>
+                <li>Механизм сессий</li>
+                <li>Bootstrap</li>
+                <li>JQuery скрипт</li>
+            </ul>
+        </div>
+        <div class="text-justify">
+            <p>
+                Полный листинг программы здесь приводить нет смысла, проще на Github посмотреть 
+                <a href="https://github.com/0TH0N/bringo-paradox">https://github.com/0TH0N/bringo-paradox</a>
+            </p>
+            <p>
+                Отдельно хочу остановиться на задании реализовать ГСЧ из собеседования. Задание звучало как реализовать 
+                ГСЧ с выдаваемым диапазоном чисел от 1 до 7 на основе двоичного ГСЧ, который генерирует только 0 и 1. 
+                Я видимо неправильно понял, но я услышал что для этого необходимо брать первый сигнал от базового ГСЧ 
+                и если он равен 0, то отбрасывать его и ждать следующего сигнала до тех пор, пока не получим 1. 
+                Как только получили 1, то ждем ещё 2 сигнала и на основе этих 3 двоичных цифр формируем десятичное 
+                число от 1 до 7. Такое решение неправильно, так как в этом случае мы отбрасываем не только 0, но и все 
+                четные числа.
+            </p>
+            <p>
+                В своей реализации "ГСЧ без ноля" я решил дожидаться полного формирования числа и затем сравнивать его с 
+                десятичным 0. Если число равно 0, то перезапускать генерацию числа до тех пор, пока результат не станет 
+                отличен от 0. В таком случае мы получаем равные шансы на генерацию чисел из заданного диапазона для 
+                "ГСЧ без ноля". Также я сделал инициализацию экземпляра класса "ГСЧ без ноля" с возможностью задания длины 
+                ожидаемой двоичной последовательности сигналов. Листинг "ГСЧ без ноля" приведен ниже:
+            </p>
+            <p>
+                <i>
+                    <br><br>
+                    namespace Bringo;
+                    <br><br>
+                    class GSCHWithoutZero
+                    <br>
+                    {
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                        protected $numberOfDigits;
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                        protected $zero;
+                        <br><br>&nbsp;&nbsp;&nbsp;&nbsp;              
+                        public function __construct($numberOfDigits)
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                        {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            $zero = '';
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            for ($i = 0; $i < $numberOfDigits; $i++) {
+                                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                $zero = $zero . '0';
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            }
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            $this->numberOfDigits = $numberOfDigits;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            $this->zero = $zero;
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                        }
+                        <br><br>&nbsp;&nbsp;&nbsp;&nbsp;                                 
+                        public function generate()
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                        {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            $result = '';
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            do {
+                                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                $result = '';
+                                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                for ($i = 0; $i < $this->numberOfDigits; $i++) {
+                                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    $binDig = random_int(0, 1);
+                                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    $result = $binDig . $result;
+                                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                }
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            } while ($result === $this->zero);
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            return bindec($result);
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                        }
+                    <br>
+                    }
+                </i>
+            </p>
+        </div>
+        <br>
+        <div class="d-flex justify-content-center">
+            <form action="/doors" method="get">
+                <input class="btn btn-primary" type="submit" value="Вернуться">
+            </form>
+        </div>
+        <br>
+        <br>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

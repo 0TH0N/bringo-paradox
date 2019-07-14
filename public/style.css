@@ -52,6 +52,10 @@
     margin: 20px;
 }
 
+.about-program {
+    margin-left: 20px;
+}
+
 .footer {
     margin-top: 50px;
 }
@@ -116,4 +120,8 @@
 
 #data-for-script {
     display: none;
+}
+
+.modal-footer label input {
+    width: 180px;
 }

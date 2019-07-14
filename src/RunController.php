@@ -30,7 +30,13 @@ class RunController
 
     public function destroy($request, $response)
     {
-        $this->repository->clearTable();
+        $password = $request->getParsedBodyParam('password');
+        $this->model->clearTable($password) ? 'true' : 'false';
         return $response->withRedirect('/doors', 301);
+    }
+
+    public function showAbout($request, $response)
+    {
+        return $this->container->renderer->render($response, 'about.phtml');
     }
 }

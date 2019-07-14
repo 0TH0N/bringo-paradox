@@ -9,6 +9,7 @@
     <title>Monti Hall Paradox</title>
 </head>
 <body>
+    
     <header class="header text-center">
         <h1>Результат</h1>
     </header>
@@ -92,10 +93,15 @@
                 <div><b>Общий процент ваших успешных выборов: <?= $roundedSessionPersent ?></b></div>
             </div>
             <div class="destroy-button">
-                <form action="/destroy" method="post">
-                    <input type="hidden" name="_METHOD" value="DELETE">
-                    <input class="btn btn-danger" type="submit" value="Очистить историю статистики">
-                </form>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                    Очистить историю статистики
+                </button>
+            </div>
+            <div class="about-program">
+                <form action="/about" method="get">
+                    <input class="btn btn-primary" type="submit" value="Комментарии к тестовому заданию">
+                </form>               
             </div>
         </div>
     </main>
@@ -109,6 +115,34 @@
         <div id="openedDoor"><?= $openedDoor ?></div>
         <div id="nextDoor"><?= $nextDoor ?></div>
         <div id="doorWithCar"><?= $doorWithCar ?></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Подтверждение удаления данных статистики</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Вы уверены что хотите удалить данные статистики? Если да, то введите пароль и нажмите кнопку "Очистить".
+            </div>
+            <form action="/destroy" method="post">
+                <div class="modal-footer">
+                        <input type="hidden" name="_METHOD" value="DELETE">
+                        <label class="d-flex flex-row flex-nowrap align-items-baseline">
+                            <span>Пароль:&nbsp;&nbsp;</span>
+                            <input type="password" name="password" id="">
+                        </label>
+                        <input class="btn btn-danger" type="submit" value="Очистить">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">отмена</button>
+                </div>
+            </form>
+            </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

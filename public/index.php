@@ -36,4 +36,6 @@ $app->get('/handle', \Bringo\RunController::class . ':handle');
 
 $app->delete('/destroy', \Bringo\RunController::class . ':destroy');
 
+$app->get('/about', \Bringo\RunController::class . ':showAbout');
+
 $app->run();
