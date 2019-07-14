@@ -5,6 +5,7 @@
 .door {
     position: relative;
     background: #B8B094;
+    border: #000 2px solid;
     width: 200px;
     height: 500px;
     margin: 20px;
@@ -53,4 +54,66 @@
 
 .footer {
     margin-top: 50px;
+}
+
+.opened-door {
+    display: none;
+    position: relative;
+    background: #fff;
+    border: #000 2px solid;
+    border-left: none;
+    width: 200px;
+    height: 500px;
+    margin: 20px;
+}
+
+.opened-door__edge {
+    position: absolute;
+    background: #B8B094;
+    border-right: #000 2px solid;
+    border-left:#000 2px solid;
+    width: 10px;
+    height: 496px;
+    top: 0;
+    left: 0;
+}
+
+.opened-door__knob-leg {
+    position: absolute;
+    background: #000;
+    width: 10px;
+    height: 5px;
+    top: 249px;
+    left: -10px;    
+}
+
+.opened-door__knob-cap {
+    position: absolute;
+    background: #000;
+    width: 5px;
+    height: 15px;
+    top: 244px;
+    left: -15px;    
+}
+
+.opened-door__hinge {
+    position: absolute;
+    background: #000;
+    width: 7.5px;
+    height: 50px;
+    border-radius: 1px;    
+}
+
+.opened-door__hinge-1 {
+    top: 30px;
+    left: -5px;
+}
+
+.opened-door__hinge-2 {
+    top: 420px;
+    left: -5px;
+}
+
+#data-for-script {
+    display: none;
 }
